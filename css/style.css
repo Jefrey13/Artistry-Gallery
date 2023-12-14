@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+*, *::before, *::after{
+    padding: 0; margin: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: 'Dancing Script', cursive;
+}
+.header-container{
+    position: fixed;
+    z-index: 101;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f3f3f3;
+
+    animation: scrollAnimation linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+    z-index: 1;
+}
+.Gallery-Container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    padding: 5rem 0;
+}
+.Gallery-Container__box{
+    flex: 20%;
+    max-width: 20%;
+    padding: 0 4px;
+}
+.Gallery-Container__box img{
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    filter: grayscale(30%);
+    transition: filter 1s ease, box-shadow 1s ease;
+    animation: reveal 2s ease;
+    animation-timeline: view();
+    animation-range: entry 10% over 20%;
+}
+
+.Gallery-Container__box img:hover{
+    cursor: pointer;
+    filter: grayscale(0%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.overlay{
+    position: fixed;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .7s ease;
+
+    visibility: hidden;
+    opacity: 0;
+}
+.overlay .slideshow{
+    width: 90%; height: 90%;
+    background-color: rgba(255, 255, 255, .9);
+    color: #131212;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+}
+.overlay .slideshow img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.overlay .slideshow .closeBtn{
+    position: absolute;
+    top: 5px; right: 10px;
+    font-size: 5rem;
+    color: rgba(0, 0, 0, .7);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: all .3s ease;
+
+    &:hover{
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+}
+
+.Btn{
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    color: #131212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    position: absolute;
+    /*Para centrar lo BTN, desde aqui mismo se usa el top y translateY*/
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgb(240, 106, 45);
+    background-color: rgba(234, 227, 227, .9);
+
+    &:hover > i{
+        transform: scale(1.1);
+        transition: all .2s ease;
+    }
+}
+.next{
+ right: 20px;
+}
+.back{
+    left: 20px;
+}
+.Btn i{
+    pointer-events: none;
+}
+
+@keyframes reveal{
+    0%{
+        opacity: 0;
+        transform: scale(.8);
+        
+    }
+    20%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes scrollAnimation{
+    to{
+        background-color: rgba(255, 255, 255, .4);
+        backdrop-filter: blur(5px);
+        font-size: 18px;
+        color: black;
+    }
+}
+@media screen and (max-width:1000px){
+    .Gallery-Container__box{
+        flex: 25%;
+        max-width: 25%;
+    }
+    .Btn{
+        font-size: 58px;
+    }
+    .back{
+        left: 7px;
+    }
+    .next{
+        right: 7px;
+    }
+    .slideshow img{
+        width: 98%;
+    }
+}
+@media screen and (max-width:800px){
+    .Gallery-Container__box{
+        flex: 50%;
+        max-width: 50%;
+    }
+    .Btn{
+        font-size: 55px;
+    }
+    .back{
+        left: 5px;
+    }
+    .next{
+        right: 5px;
+    }
+    .slideshow img{
+        width: 98%;
+    }
+}
+@media screen and (max-width:600px) {
+    .Gallery-Container__box{
+        flex: 100%;
+        max-width: 100%;
+    }
+}
